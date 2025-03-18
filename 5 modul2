@@ -56,5 +56,5 @@ void main() {
 
   print("Data setelah diurutkan:");
   display(daftarMahasiswa);
-  print('Waktu eksekusi: \${waktuSelesai.difference(waktuMulai).inMilliseconds} ms');
+  print('Waktu eksekusi: \ ${waktuSelesai.difference(waktuMulai).inMilliseconds} ms');
 }
