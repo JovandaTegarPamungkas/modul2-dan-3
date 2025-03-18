@@ -1,0 +1,67 @@
+class Mahasiswa implements Comparable<Mahasiswa> {
+  String nrp;
+  String nama;
+
+  // Constructor untuk inisialisasi objek Mahasiswa
+  Mahasiswa(this.nrp, this.nama);
+
+  @override
+  int compareTo(Mahasiswa other) {
+    // Membandingkan NRP untuk menentukan urutan
+    return nrp.compareTo(other.nrp);
+  }
+
+  @override
+  String toString() {
+    // Mengubah objek menjadi string agar mudah dibaca
+    return 'NRP: $nrp, Nama: $nama';
+  }
+}
+
+void selectionSort<T extends Comparable<T>>(List<T> arr) {
+  int n = arr.length;
+  for (int i = 0; i < n - 1; i++) {
+    int minIndex = i;
+    for (int j = i + 1; j < n; j++) {
+      if (arr[j].compareTo(arr[minIndex]) < 0) {
+        minIndex = j;
+      }
+    }
+    // Menukar elemen jika diperlukan
+    if (minIndex != i) {
+      T temp = arr[i];
+      arr[i] = arr[minIndex];
+      arr[minIndex] = temp;
+    }
+  }
+}
+
+void tampilkanData<T>(List<T> data) {
+  // Menampilkan setiap elemen dalam daftar
+  for (var item in data) {
+    print(item);
+  }
+  print('');
+}
+
+void main() {
+  // Membuat daftar mahasiswa secara acak
+  List<Mahasiswa> daftarMahasiswa = [
+    Mahasiswa("02", "Budi"),
+    Mahasiswa("01", "Andi"),
+    Mahasiswa("04", "Dina"),
+    Mahasiswa("03", "Candra")
+  ];
+
+  print("Data sebelum diurutkan:");
+  tampilkanData(daftarMahasiswa);
+
+  // Mengukur waktu proses sorting
+  var waktuMulai = DateTime.now();
+  selectionSort(daftarMahasiswa);
+  var waktuSelesai = DateTime.now();
+
+  print("Data setelah diurutkan:");
+  tampilkanData(daftarMahasiswa);
+  print('Waktu eksekusi: \ ${waktuSelesai.difference(waktuMulai).inMilliseconds} ms');
+}
